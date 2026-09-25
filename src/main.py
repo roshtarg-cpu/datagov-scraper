@@ -31,7 +31,7 @@ async def main():
         
         print("DEBUG: starting scraper")
         print(f'DEBUG: scraper params - query={search_query}, org={organization}, tags={tags}, max={max_results}')
-        Actor.log.info('Starting Data.gov scraper...')
+        # Actor.log.info # ('Starting Data.gov scraper...')
         
         # Build search URL
         params = {}
@@ -46,7 +46,7 @@ async def main():
         if params:
             search_url += f"?{urlencode(params)}"
         
-        Actor.log.info(f'Search URL: {search_url}')
+        # Actor.log.info # (f'Search URL: {search_url}')
         
         # Setup proxy if provided
         proxy_config = actor_input.get('proxyConfiguration')
@@ -64,7 +64,7 @@ async def main():
         
         async with httpx.AsyncClient(**client_kwargs) as client:
             # Fetch listing page
-            Actor.log.info('Fetching datasets...')
+            # Actor.log.info # ('Fetching datasets...')
             response = await client.get(
                 search_url,
                 headers={'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'}
@@ -76,10 +76,10 @@ async def main():
             # Find dataset containers
             containers = soup.find_all('div', class_=lambda x: x and 'dataset' in str(x).lower())
             
-            Actor.log.info(f'Found {len(containers)} datasets')
+            # Actor.log.info # (f'Found {len(containers)} datasets')
             
             if not containers:
-                Actor.log.warning('No datasets found on page')
+                # Actor.log.warning # ('No datasets found on page')
                 return
             
             for container in containers[:max_results]:
@@ -136,13 +136,13 @@ async def main():
                     
                     await Actor.push_data(result)
                     results_count += 1
-                    Actor.log.info(f'Scraped {results_count}/{max_results}: {dataset_title}')
+                    # Actor.log.info # (f'Scraped {results_count}/{max_results}: {dataset_title}')
                     
                     if results_count >= max_results:
                         break
                         
                 except Exception as e:
-                    Actor.log.warning(f'Failed to parse dataset: {e}')
+                    # Actor.log.warning # (f'Failed to parse dataset: {e}')
                     continue
         
-        Actor.log.info(f'Scraping completed! Total datasets: {results_count}')
+        # Actor.log.info # (f'Scraping completed! Total datasets: {results_count}')
