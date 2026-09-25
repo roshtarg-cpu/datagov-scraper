@@ -1,0 +1,44 @@
+{
+  "$schema": "https://apify.com/schemas/v1/input.ide.json",
+  "title": "Data.gov Scraper Input",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "searchQuery": {
+      "title": "Search Keywords",
+      "type": "string",
+      "description": "Dataset keywords to search for (e.g. 'climate', 'health', 'education')",
+      "editor": "textfield",
+      "prefill": ""
+    },
+    "organization": {
+      "title": "Organization",
+      "type": "string",
+      "description": "Filter by organization (e.g. 'nasa', 'noaa', 'cdc')",
+      "editor": "textfield",
+      "prefill": ""
+    },
+    "tags": {
+      "title": "Tags",
+      "type": "string",
+      "description": "Filter by tags (comma-separated)",
+      "editor": "textfield",
+      "prefill": ""
+    },
+    "maxResults": {
+      "title": "Max Results",
+      "type": "integer",
+      "description": "Maximum number of datasets to scrape",
+      "editor": "number",
+      "minimum": 1,
+      "prefill": 3
+    },
+    "proxyConfiguration": {
+      "title": "Proxy Configuration",
+      "type": "object",
+      "description": "Proxy settings (optional)",
+      "editor": "proxy"
+    }
+  },
+  "required": ["maxResults"]
+}

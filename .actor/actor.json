@@ -1,0 +1,10 @@
+{
+  "$schema": "https://apify.com/schemas/v1/actor.ide.json",
+  "actorSpecification": 1,
+  "name": "datagov-scraper",
+  "title": "Data.gov Scraper - US Government Open Data Portal Extractor",
+  "version": "1.0",
+  "input": "input_schema.json",
+  "outputSchema": "output_schema.json",
+  "dockerfile": "./Dockerfile"
+}

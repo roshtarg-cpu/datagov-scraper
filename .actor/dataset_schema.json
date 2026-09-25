@@ -1,0 +1,28 @@
+{
+  "$schema": "https://apify.com/schemas/v1/dataset.ide.json",
+  "actorSpecification": 1,
+  "fields": {
+    "datasetUrl": {"type": "string", "title": "Dataset URL"},
+    "datasetTitle": {"type": "string", "title": "Dataset Title"},
+    "organization": {"type": "string", "title": "Organization"},
+    "tags": {"type": "array", "items": {"type": "string"}, "title": "Tags"},
+    "notes": {"type": "string", "title": "Description"},
+    "resources": {"type": "integer", "title": "Resource Count"},
+    "lastModified": {"type": "string", "title": "Last Modified"},
+    "scrapedAt": {"type": "string", "title": "Scraped At"}
+  },
+  "views": {
+    "overview": {
+      "title": "Overview",
+      "transformation": {"fields": ["datasetTitle","organization","tags"]},
+      "display": {
+        "component": "table",
+        "properties": {
+          "datasetTitle": {"label":"Dataset","format":"text"},
+          "organization": {"label":"Organization","format":"text"},
+          "tags": {"label":"Tags","format":"text"}
+        }
+      }
+    }
+  }
+}
