@@ -24,7 +24,8 @@ async def main():
             actor_input = {}
         
         print("DEBUG: starting scraper")
-        Actor.log.info('Starting Data.gov scraper...')
+        print(f'DEBUG: scraper params - query={search_query}, org={organization}, tags={tags}, max={max_results}')
+        #Actor.log.info('Starting Data.gov scraper...')
         
         # Parse input
         search_query = actor_input.get('searchQuery', '')
