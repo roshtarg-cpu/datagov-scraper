@@ -23,15 +23,15 @@ async def main():
         if not actor_input:
             actor_input = {}
         
-        print("DEBUG: starting scraper")
-        print(f'DEBUG: scraper params - query={search_query}, org={organization}, tags={tags}, max={max_results}')
-        #Actor.log.info('Starting Data.gov scraper...')
-        
         # Parse input
         search_query = actor_input.get('searchQuery', '')
         organization = actor_input.get('organization', '')
         tags = actor_input.get('tags', '')
         max_results = actor_input.get('maxResults', 3)
+        
+        print("DEBUG: starting scraper")
+        print(f'DEBUG: scraper params - query={search_query}, org={organization}, tags={tags}, max={max_results}')
+        Actor.log.info('Starting Data.gov scraper...')
         
         # Build search URL
         params = {}
