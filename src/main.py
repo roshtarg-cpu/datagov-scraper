@@ -31,20 +31,31 @@ async def main():
         
         print("DEBUG: starting scraper")
         print(f'DEBUG: scraper params - query={search_query}, org={organization}, tags={tags}, max={max_results}')
-        # Actor.log.info # ('Starting Data.gov scraper...')
         
-        # Build search URL
-        params = {}
-        if search_query:
-            params['q'] = search_query
-        if organization:
-            params['organization'] = organization
-        if tags:
-            params['tags'] = tags
-        
-        search_url = "https://catalog.data.gov/dataset"
-        if params:
-            search_url += f"?{urlencode(params)}"
+        try:
+            # Actor.log.info # ('Starting Data.gov scraper...')
+            
+            # Build search URL
+            params = {}
+            if search_query:
+                params['q'] = search_query
+            if organization:
+                params['organization'] = organization
+            if tags:
+                params['tags'] = tags
+            
+            print(f"DEBUG: built params: {params}")
+            
+            search_url = "https://catalog.data.gov/dataset"
+            if params:
+                search_url += f"?{urlencode(params)}"
+            
+            print(f"DEBUG: URL: {search_url}")
+        except Exception as e:
+            print(f"DEBUG ERROR in URL building: {e}")
+            import traceback
+            traceback.print_exc()
+            raise
         
         # Actor.log.info # (f'Search URL: {search_url}')
         
