@@ -1,4 +1,5 @@
 """Data.gov Open Data Portal Scraper"""
+print("DEBUG: main.py loaded")
 import os
 import re
 from datetime import datetime, timezone
@@ -7,11 +8,14 @@ from urllib.parse import urlencode, urljoin
 import httpx
 from apify import Actor
 from bs4 import BeautifulSoup
+print("DEBUG: imports complete")
 
 
 async def main():
     """Main scraper entry point."""
+    print("DEBUG: main() called")
     async with Actor:
+        print("DEBUG: inside Actor context")
         # Get input
         actor_input = await Actor.get_input()
         if not actor_input:
