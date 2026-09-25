@@ -59,6 +59,7 @@ async def main():
         
         # Actor.log.info # (f'Search URL: {search_url}')
         
+        print("DEBUG: setting up proxy")
         # Setup proxy if provided
         proxy_config = actor_input.get('proxyConfiguration')
         proxy_url = None
@@ -67,10 +68,13 @@ async def main():
             if proxy_password:
                 proxy_url = f"http://auto:{proxy_password}@proxy.apify.com:8000"
         
+        print(f"DEBUG: proxy_url = {proxy_url}")
+        
         client_kwargs = {'follow_redirects': True, 'timeout': 30.0}
         if proxy_url:
             client_kwargs['proxy'] = proxy_url
         
+        print("DEBUG: about to create httpx client")
         results_count = 0
         
         async with httpx.AsyncClient(**client_kwargs) as client:
